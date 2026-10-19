@@ -22,7 +22,7 @@ export function NucleoPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const nucleo = NUCLEOS.find((n) => n.id === id)
-  if (!nucleo) return <Navigate to="/nucleos/cs" replace />
+  if (!nucleo) return <Navigate to={`/nucleos/${NUCLEOS[0].id}`} replace />
 
   const linha = rankingAtual().find((l) => l.nucleo.id === nucleo.id)!
   const c = QUINZENA_ATUAL[nucleo.id]
@@ -31,7 +31,7 @@ export function NucleoPage() {
   const recuperar = atividadesParaRecuperar(nucleo.id)
   const membros = membrosDoNucleo(nucleo.id)
   const reconhecimento = reconhecimentoDoNucleo(nucleo.id)
-  const palavras = nucleo.nome.split(' ').filter((w) => w.length > 2)
+  const palavras = nucleo.nome.split(/[\s-]/).filter((w) => w.length > 2)
   const iniciais = (palavras.length > 1 ? palavras.map((w) => w[0]).join('') : nucleo.nome.slice(0, 2)).toUpperCase()
 
   const segmentos = [
@@ -68,12 +68,14 @@ export function NucleoPage() {
                 {iniciais}
               </span>
               {nucleo.tatico}
+              <span className="text-slate-300">·</span>
+              <span className="text-slate-500">{nucleo.cargos.join(' – ')}</span>
             </div>
             <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
               <Numero
                 icone={<Hash className="h-4 w-4 text-accent-500" />}
                 valor={`${linha.posicao}º`}
-                sufixo="/ 6"
+                sufixo={`/ ${NUCLEOS.length}`}
                 rotulo="Posição"
                 sub={
                   <span className="inline-flex items-center gap-1">
@@ -252,33 +254,46 @@ export function NucleoPage() {
             </Card>
           </div>
 
-          {/* Membros */}
+          {/* Estrutura de cargos e membros da demonstração */}
           <div>
             <div className="mb-3 flex items-center gap-2.5">
-              <h2 className="text-lg font-semibold text-slate-900">Membros</h2>
+              <h2 className="text-lg font-semibold text-slate-900">Estrutura e membros</h2>
               <Contador>{membros.length}</Contador>
             </div>
             <Card>
-              {membros.length === 0 ? (
-                <p className="px-4 py-6 text-center text-sm text-slate-500">Nenhum membro da demonstração neste núcleo.</p>
-              ) : (
-                <ul className="divide-y divide-slate-100">
-                  {membros.map((m) => (
-                    <li key={m.id}>
-                      <Link to={`/membros/${m.id}`} className="flex items-center gap-3 px-4 py-3 hover:bg-slate-50">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-400 text-xs font-bold text-white">
-                          {m.iniciais}
+              <ol className="divide-y divide-slate-100">
+                {nucleo.cargos.map((cargo, nivel) => {
+                  const doCargo = membros.filter((m) => m.cargo === cargo)
+                  return (
+                    <li key={cargo} className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-5 w-5 items-center justify-center rounded bg-navy-800 text-[10px] font-bold text-white">
+                          {nivel + 1}
                         </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block text-sm font-medium text-slate-900">{m.nome}</span>
-                          <span className="block text-xs text-slate-500">{m.cargo}</span>
-                        </span>
-                        <ChevronRight className="h-4 w-4 text-slate-300" />
-                      </Link>
+                        <span className="text-sm font-semibold text-slate-900">{cargo}</span>
+                      </div>
+                      {doCargo.length > 0 && (
+                        <ul className="mt-2 space-y-1 pl-7">
+                          {doCargo.map((m) => (
+                            <li key={m.id}>
+                              <Link
+                                to={`/membros/${m.id}`}
+                                className="-mx-2 flex items-center gap-2.5 rounded-lg px-2 py-1.5 hover:bg-slate-50"
+                              >
+                                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-accent-400 text-[11px] font-bold text-white">
+                                  {m.iniciais}
+                                </span>
+                                <span className="min-w-0 flex-1 text-sm font-medium text-slate-800">{m.nome}</span>
+                                <ChevronRight className="h-4 w-4 text-slate-300" />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </li>
-                  ))}
-                </ul>
-              )}
+                  )
+                })}
+              </ol>
               <p className="border-t border-slate-100 px-4 py-2.5 text-[11px] text-slate-400">
                 Apenas membros da demonstração. Não há ranking individual.
               </p>

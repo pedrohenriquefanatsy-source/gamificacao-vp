@@ -22,7 +22,7 @@ export function MembroPage() {
         rotulo="Selecionar membro"
         valor={membro.id}
         onChange={(v) => navigate(`/membros/${v}`)}
-        opcoes={MEMBROS.map((m) => ({ valor: m.id, rotulo: `${m.nome} · ${nucleoPorId(m.nucleo).nome}` }))}
+        opcoes={MEMBROS.map((m) => ({ valor: m.id, rotulo: `${m.nome} · ${m.cargo} · ${nucleoPorId(m.nucleo).nome}` }))}
         className="w-full sm:w-80"
       />
 

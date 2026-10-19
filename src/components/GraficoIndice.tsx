@@ -7,21 +7,19 @@ import { cx } from './ui'
 // Cores fixas por núcleo, tiradas da paleta dos prints (ciano, marinho, rosa, azul).
 // A identidade nunca depende só da cor: há legenda, rótulo no fim de cada linha e a tabela do ranking.
 export const COR_NUCLEO: Record<NucleoId, string> = {
-  cs: '#12b0d6',
+  presidencia: '#12b0d6',
+  vp: '#3b82f6',
   projetos: '#3d5687',
-  gp: '#ec4899',
-  comercial: '#3b82f6',
   marketing: '#0f7391',
-  inovacao: '#8fa3c7',
+  gp: '#ec4899',
 }
 
 const SIGLA: Record<NucleoId, string> = {
-  cs: 'CS',
+  presidencia: 'Presidência',
+  vp: 'VP',
   projetos: 'Projetos',
-  gp: 'GP',
-  comercial: 'Comercial',
   marketing: 'Marketing',
-  inovacao: 'Inovação',
+  gp: 'GP',
 }
 
 function Dica({ active, payload, label }: { active?: boolean; payload?: { dataKey: string; value: number; color: string }[]; label?: string }) {
@@ -78,7 +76,7 @@ export function GraficoIndice({ nucleos, altura = 280 }: { nucleos?: NucleoId[];
             <CartesianGrid stroke="#eef1f5" vertical={false} />
             <XAxis dataKey="quinzena" tickLine={false} axisLine={{ stroke: '#e2e8f0' }} tick={{ fontSize: 12, fill: '#64748b' }} />
             <YAxis
-              domain={[0.8, 3]}
+              domain={[1, 3]}
               ticks={[1, 1.5, 2, 2.5, 3]}
               tickFormatter={(v: number) => fmtIndice(v).replace(',00', '').replace(/0$/, '')}
               tickLine={false}

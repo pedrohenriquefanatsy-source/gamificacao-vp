@@ -73,7 +73,7 @@ export const CONFIGURACOES_PENDENTES: { titulo: string; detalhe: string; usadoNa
   {
     titulo: 'Participação da VP no ranking',
     detalhe: 'A Vice-Presidência concorre com os núcleos ou apenas acompanha?',
-    usadoNaDemo: 'A VP não aparece no ranking.',
+    usadoNaDemo: 'A VP participa do ranking como núcleo (Diretor – Gerente – Assessor).',
   },
   {
     titulo: 'Critério do campeão da batalha',

@@ -19,7 +19,7 @@ createRoot(document.getElementById('root')!).render(
         <Route element={<SistemaLayout />}>
           <Route path="/como-funciona" element={<ComoFunciona />} />
           <Route path="/ranking" element={<Ranking />} />
-          <Route path="/nucleos" element={<Navigate to="/nucleos/cs" replace />} />
+          <Route path="/nucleos" element={<Navigate to="/nucleos/presidencia" replace />} />
           <Route path="/nucleos/:id" element={<NucleoPage />} />
           <Route path="/membros" element={<Navigate to="/membros/joao-pedro" replace />} />
           <Route path="/membros/:id" element={<MembroPage />} />

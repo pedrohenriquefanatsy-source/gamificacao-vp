@@ -41,7 +41,7 @@ export const ITENS_SISTEMA: ItemNav[] = [
 export const ITENS_GAMIFICACAO: ItemNav[] = [
   { rotulo: 'Como funciona', icone: Workflow, base: '/como-funciona', para: '/como-funciona' },
   { rotulo: 'Ranking', icone: Trophy, base: '/ranking', para: '/ranking' },
-  { rotulo: 'Núcleos', icone: Users, base: '/nucleos', para: '/nucleos/cs' },
+  { rotulo: 'Núcleos', icone: Users, base: '/nucleos', para: '/nucleos/presidencia' },
   { rotulo: 'Membros', icone: User, base: '/membros', para: '/membros/joao-pedro' },
   { rotulo: 'Indicadores', icone: Gauge, base: '/indicadores', para: '/indicadores' },
   { rotulo: 'Regras', icone: BookOpen, base: '/regras', para: '/regras' },

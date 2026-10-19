@@ -3,7 +3,7 @@
 
 import type { CodigoBonus, CodigoRegraAtividade } from '../config/regras'
 
-export type NucleoId = 'cs' | 'projetos' | 'gp' | 'comercial' | 'marketing' | 'inovacao'
+export type NucleoId = 'presidencia' | 'vp' | 'projetos' | 'marketing' | 'gp'
 export type QuinzenaId = 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'Q5' | 'Q6'
 
 export const BATALHA = {
@@ -30,18 +30,51 @@ export interface Nucleo {
   nome: string
   tatico: string
   objetivo: string
+  // Estrutura de cargos, do mais alto para o mais baixo.
+  cargos: string[]
 }
 
 export const NUCLEOS: Nucleo[] = [
-  { id: 'cs', nome: 'CS', tatico: 'Tático CS', objetivo: 'Elevar a satisfação dos clientes' },
-  { id: 'projetos', nome: 'Projetos', tatico: 'Tático Projetos', objetivo: 'Melhorar a qualidade dos projetos' },
-  { id: 'gp', nome: 'Gestão de Pessoas', tatico: 'Tático GP', objetivo: 'Incentivar a formação de lideranças' },
-  { id: 'comercial', nome: 'Comercial', tatico: 'Tático Comercial', objetivo: 'Expandir portfólio de serviços' },
-  { id: 'marketing', nome: 'Marketing', tatico: 'Tático Marketing', objetivo: 'Fortalecer a marca da empresa' },
-  { id: 'inovacao', nome: 'Inovação', tatico: 'Diretor (sem tático eleito)', objetivo: 'Validar novos produtos' },
+  {
+    id: 'presidencia',
+    nome: 'Presidência',
+    tatico: 'Tático Presidência',
+    objetivo: 'Fortalecer a governança da empresa',
+    cargos: ['Diretor', 'Assessor'],
+  },
+  {
+    id: 'vp',
+    nome: 'Vice-Presidência',
+    tatico: 'Tático VP',
+    objetivo: 'Modelo de acompanhamento estratégico',
+    cargos: ['Diretor', 'Gerente', 'Assessor'],
+  },
+  {
+    id: 'projetos',
+    nome: 'Projetos',
+    tatico: 'Tático Projetos',
+    objetivo: 'Melhorar a qualidade dos projetos',
+    cargos: ['Diretor', 'Gerente', 'Consultor'],
+  },
+  {
+    id: 'marketing',
+    nome: 'Marketing',
+    tatico: 'Tático Marketing',
+    objetivo: 'Expandir portfólio de serviços',
+    cargos: ['Diretor', 'Closer', 'SDR'],
+  },
+  {
+    id: 'gp',
+    nome: 'Gestão de Pessoas',
+    tatico: 'Tático GP',
+    objetivo: 'Incentivar a formação de lideranças',
+    cargos: ['Diretor', 'Gerente', 'Assessor'],
+  },
 ]
 
 // 8.2 · Contagem por regra na Quinzena 4 (atual). Inclui as atividades dos membros da demonstração.
+// As linhas do briefing original foram mantidas e redistribuídas na estrutura atual de núcleos:
+// CS → Presidência, Comercial → Vice-Presidência; Projetos, Marketing e GP seguem iguais.
 export interface Contagem {
   atividades: number
   R1: number
@@ -52,22 +85,20 @@ export interface Contagem {
 }
 
 export const QUINZENA_ATUAL: Record<NucleoId, Contagem> = {
-  cs: { atividades: 24, R1: 20, R2: 2, R3: 1, R4: 1, bonus: ['R5'] },
+  presidencia: { atividades: 24, R1: 20, R2: 2, R3: 1, R4: 1, bonus: ['R5'] },
+  vp: { atividades: 18, R1: 13, R2: 2, R3: 1, R4: 2, bonus: [] },
   projetos: { atividades: 30, R1: 23, R2: 4, R3: 2, R4: 1, bonus: ['R6'] },
-  gp: { atividades: 20, R1: 14, R2: 3, R3: 1, R4: 2, bonus: ['R5'] },
-  comercial: { atividades: 18, R1: 13, R2: 2, R3: 1, R4: 2, bonus: [] },
   marketing: { atividades: 15, R1: 9, R2: 3, R3: 2, R4: 1, bonus: [] },
-  inovacao: { atividades: 10, R1: 5, R2: 2, R3: 1, R4: 2, bonus: [] },
+  gp: { atividades: 20, R1: 14, R2: 3, R3: 1, R4: 2, bonus: ['R5'] },
 }
 
 // 8.3 · Índices fechados das quinzenas anteriores. O Q4 sai do cálculo de QUINZENA_ATUAL.
 export const HISTORICO_INDICE: Record<NucleoId, { Q1: number; Q2: number; Q3: number }> = {
-  cs: { Q1: 2.1, Q2: 2.25, Q3: 2.4 },
+  presidencia: { Q1: 2.1, Q2: 2.25, Q3: 2.4 },
+  vp: { Q1: 2.2, Q2: 2.15, Q3: 2.1 },
   projetos: { Q1: 2.35, Q2: 2.55, Q3: 2.5 },
-  gp: { Q1: 1.6, Q2: 1.7, Q3: 1.85 },
-  comercial: { Q1: 2.2, Q2: 2.15, Q3: 2.1 },
   marketing: { Q1: 1.5, Q2: 1.8, Q3: 1.7 },
-  inovacao: { Q1: 1.0, Q2: 1.1, Q3: 1.2 },
+  gp: { Q1: 1.6, Q2: 1.7, Q3: 1.85 },
 }
 
 // 8.4 · Indicadores da Q4 que não saem da contagem (planos, ciclo e indicador próprio).
@@ -92,15 +123,26 @@ export interface IndicadoresExtras {
 }
 
 export const INDICADORES_Q4: Record<NucleoId, IndicadoresExtras> = {
-  cs: {
+  presidencia: {
     planos: { numerador: 2, denominador: 2 },
     ciclo: { numerador: 2, denominador: 2 },
     proprio: {
-      nome: 'Satisfação dos clientes',
-      formula: 'Média das notas de satisfação (0 a 10) dos clientes atendidos',
-      tipo: 'nota',
-      valor: 9.1,
-      meta: 8.5,
+      nome: 'Metas estratégicas em dia',
+      formula: 'Metas do planejamento estratégico em dia ÷ metas acompanhadas',
+      tipo: 'percentual',
+      fracao: { numerador: 9, denominador: 10 },
+      meta: 85,
+    },
+  },
+  vp: {
+    planos: { numerador: 3, denominador: 4 },
+    ciclo: { numerador: 2, denominador: 2 },
+    proprio: {
+      nome: 'Pautas de acompanhamento no prazo',
+      formula: 'Pautas de acompanhamento enviadas aos núcleos no prazo ÷ pautas previstas',
+      tipo: 'percentual',
+      fracao: { numerador: 7, denominador: 9 },
+      meta: 80,
     },
   },
   projetos: {
@@ -114,6 +156,17 @@ export const INDICADORES_Q4: Record<NucleoId, IndicadoresExtras> = {
       meta: 85,
     },
   },
+  marketing: {
+    planos: { numerador: 1, denominador: 2 },
+    ciclo: { numerador: 2, denominador: 2 },
+    proprio: {
+      nome: 'Leads com reunião agendada',
+      formula: 'Leads qualificados pelos SDRs com reunião agendada ÷ leads qualificados',
+      tipo: 'percentual',
+      fracao: { numerador: 7, denominador: 10 },
+      meta: 80,
+    },
+  },
   gp: {
     planos: { numerador: 3, denominador: 3 },
     ciclo: { numerador: 2, denominador: 2 },
@@ -125,49 +178,15 @@ export const INDICADORES_Q4: Record<NucleoId, IndicadoresExtras> = {
       meta: 90,
     },
   },
-  comercial: {
-    planos: { numerador: 3, denominador: 4 },
-    ciclo: { numerador: 2, denominador: 2 },
-    proprio: {
-      nome: 'Propostas enviadas no prazo',
-      formula: 'Propostas enviadas no prazo ÷ propostas solicitadas',
-      tipo: 'percentual',
-      fracao: { numerador: 39, denominador: 50 },
-      meta: 80,
-    },
-  },
-  marketing: {
-    planos: { numerador: 1, denominador: 2 },
-    ciclo: { numerador: 2, denominador: 2 },
-    proprio: {
-      nome: 'Publicações no prazo',
-      formula: 'Publicações feitas na data do calendário ÷ publicações planejadas',
-      tipo: 'percentual',
-      fracao: { numerador: 7, denominador: 10 },
-      meta: 80,
-    },
-  },
-  inovacao: {
-    planos: null,
-    ciclo: { numerador: 1, denominador: 2 },
-    proprio: {
-      nome: 'MVPs entregues',
-      formula: 'MVPs entregues ÷ MVPs previstos para a quinzena',
-      tipo: 'percentual',
-      fracao: { numerador: 1, denominador: 2 },
-      meta: 100,
-    },
-  },
 }
 
 // "No prazo" fechado na Q3 (em %), usado no alerta de vermelho por 2 quinzenas seguidas.
 export const NO_PRAZO_Q3: Record<NucleoId, number> = {
-  cs: 81,
+  presidencia: 81,
+  vp: 74,
   projetos: 78,
-  gp: 72,
-  comercial: 74,
   marketing: 62,
-  inovacao: 48,
+  gp: 72,
 }
 
 // 8.5 · Atividades da Quinzena 4. Cada atividade de membro já está contada em QUINZENA_ATUAL.
@@ -189,27 +208,27 @@ export interface Membro {
   nome: string
   iniciais: string
   nucleo: NucleoId
-  cargo: string
+  cargo: string // um dos cargos da estrutura do núcleo
 }
 
 export const MEMBROS: Membro[] = [
-  { id: 'joao-pedro', nome: 'João Pedro', iniciais: 'JP', nucleo: 'cs', cargo: 'Assessor de CS' },
-  { id: 'pedro-henrique', nome: 'Pedro Henrique', iniciais: 'PH', nucleo: 'projetos', cargo: 'Gerente de projetos' },
-  { id: 'lucas-gabriel', nome: 'Lucas Gabriel', iniciais: 'LG', nucleo: 'comercial', cargo: 'Assessor comercial' },
-  { id: 'kaua-medeiros', nome: 'Kauã de Medeiros', iniciais: 'KM', nucleo: 'gp', cargo: 'Assessor de GP' },
-  { id: 'gabriel-nunes', nome: 'Gabriel Nunes', iniciais: 'GN', nucleo: 'marketing', cargo: 'Assessor de marketing' },
+  { id: 'joao-pedro', nome: 'João Pedro', iniciais: 'JP', nucleo: 'presidencia', cargo: 'Assessor' },
+  { id: 'pedro-henrique', nome: 'Pedro Henrique', iniciais: 'PH', nucleo: 'projetos', cargo: 'Consultor' },
+  { id: 'lucas-gabriel', nome: 'Lucas Gabriel', iniciais: 'LG', nucleo: 'vp', cargo: 'Assessor' },
+  { id: 'kaua-medeiros', nome: 'Kauã de Medeiros', iniciais: 'KM', nucleo: 'gp', cargo: 'Assessor' },
+  { id: 'gabriel-nunes', nome: 'Gabriel Nunes', iniciais: 'GN', nucleo: 'marketing', cargo: 'SDR' },
 ]
 
 export const ATIVIDADES: Atividade[] = [
-  // João Pedro · CS (5 R1, 1 R2)
-  { id: 'a01', titulo: 'Enviar relatório de NPS do cliente', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-20', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Relacionamento' },
-  { id: 'a02', titulo: 'Conduzir reunião de pós-venda com cliente', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-22', concluidaEm: '2026-10-22', regra: 'R1', etiqueta: 'Relacionamento' },
-  { id: 'a03', titulo: 'Atualizar base de contatos dos clientes ativos', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-23', concluidaEm: '2026-10-21', regra: 'R1', etiqueta: 'Operação' },
-  { id: 'a04', titulo: 'Aplicar pesquisa de satisfação do projeto encerrado', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-27', concluidaEm: '2026-10-26', regra: 'R1', etiqueta: 'Qualidade' },
-  { id: 'a05', titulo: 'Registrar feedbacks na matriz de satisfação', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-29', concluidaEm: '2026-10-29', regra: 'R1', etiqueta: 'Qualidade' },
-  { id: 'a06', titulo: 'Preparar case de sucesso para o portfólio', nucleo: 'cs', membroId: 'joao-pedro', prazo: '2026-10-21', concluidaEm: '2026-10-24', regra: 'R2', etiqueta: 'Estratégia' },
+  // João Pedro · Presidência · Assessor (5 R1, 1 R2)
+  { id: 'a01', titulo: 'Preparar a pauta da RG de outubro', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-20', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Governança' },
+  { id: 'a02', titulo: 'Consolidar o relatório mensal para o conselho', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-22', concluidaEm: '2026-10-22', regra: 'R1', etiqueta: 'Governança' },
+  { id: 'a03', titulo: 'Atualizar o mapa de parceiros institucionais', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-23', concluidaEm: '2026-10-21', regra: 'R1', etiqueta: 'Relacionamento' },
+  { id: 'a04', titulo: 'Enviar comunicado institucional aos membros', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-27', concluidaEm: '2026-10-26', regra: 'R1', etiqueta: 'Comunicação' },
+  { id: 'a05', titulo: 'Organizar a documentação legal da empresa', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-29', concluidaEm: '2026-10-29', regra: 'R1', etiqueta: 'Jurídico' },
+  { id: 'a06', titulo: 'Revisar o planejamento estratégico anual', nucleo: 'presidencia', membroId: 'joao-pedro', prazo: '2026-10-21', concluidaEm: '2026-10-24', regra: 'R2', etiqueta: 'Estratégia' },
 
-  // Pedro Henrique · Projetos (5 R1, 1 R2, 1 R4)
+  // Pedro Henrique · Projetos · Consultor (5 R1, 1 R2, 1 R4)
   { id: 'a07', titulo: 'Revisar cronograma do projeto de consultoria', nucleo: 'projetos', membroId: 'pedro-henrique', prazo: '2026-10-19', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Planejamento' },
   { id: 'a08', titulo: 'Entregar relatório parcial ao cliente', nucleo: 'projetos', membroId: 'pedro-henrique', prazo: '2026-10-21', concluidaEm: '2026-10-20', regra: 'R1', etiqueta: 'Entrega' },
   { id: 'a09', titulo: 'Conduzir reunião de kickoff do novo projeto', nucleo: 'projetos', membroId: 'pedro-henrique', prazo: '2026-10-22', concluidaEm: '2026-10-22', regra: 'R1', etiqueta: 'Entrega' },
@@ -218,14 +237,14 @@ export const ATIVIDADES: Atividade[] = [
   { id: 'a12', titulo: 'Documentar lições aprendidas do projeto', nucleo: 'projetos', membroId: 'pedro-henrique', prazo: '2026-10-23', concluidaEm: '2026-10-27', regra: 'R2', etiqueta: 'Qualidade' },
   { id: 'a13', titulo: 'Atualizar o status report quinzenal', nucleo: 'projetos', membroId: 'pedro-henrique', prazo: '2026-10-26', regra: 'R4', etiqueta: 'Acompanhamento' },
 
-  // Lucas Gabriel · Comercial (3 R1, 1 R2, 1 R4)
-  { id: 'a14', titulo: 'Atualizar o pipeline de propostas', nucleo: 'comercial', membroId: 'lucas-gabriel', prazo: '2026-10-19', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Comercial' },
-  { id: 'a15', titulo: 'Enviar proposta comercial para lead qualificado', nucleo: 'comercial', membroId: 'lucas-gabriel', prazo: '2026-10-22', concluidaEm: '2026-10-21', regra: 'R1', etiqueta: 'Comercial' },
-  { id: 'a16', titulo: 'Realizar diagnóstico com cliente prospectado', nucleo: 'comercial', membroId: 'lucas-gabriel', prazo: '2026-10-28', concluidaEm: '2026-10-28', regra: 'R1', etiqueta: 'Comercial' },
-  { id: 'a17', titulo: 'Revisar precificação dos serviços', nucleo: 'comercial', membroId: 'lucas-gabriel', prazo: '2026-10-20', concluidaEm: '2026-10-23', regra: 'R2', etiqueta: 'Financeiro' },
-  { id: 'a18', titulo: 'Fazer follow-up dos leads de setembro', nucleo: 'comercial', membroId: 'lucas-gabriel', prazo: '2026-10-27', regra: 'R4', etiqueta: 'Comercial' },
+  // Lucas Gabriel · Vice-Presidência · Assessor (3 R1, 1 R2, 1 R4)
+  { id: 'a14', titulo: 'Consolidar o acompanhamento quinzenal dos núcleos', nucleo: 'vp', membroId: 'lucas-gabriel', prazo: '2026-10-19', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Acompanhamento' },
+  { id: 'a15', titulo: 'Atualizar o painel de indicadores estratégicos', nucleo: 'vp', membroId: 'lucas-gabriel', prazo: '2026-10-22', concluidaEm: '2026-10-21', regra: 'R1', etiqueta: 'Indicadores' },
+  { id: 'a16', titulo: 'Preparar a pauta da RN', nucleo: 'vp', membroId: 'lucas-gabriel', prazo: '2026-10-28', concluidaEm: '2026-10-28', regra: 'R1', etiqueta: 'Governança' },
+  { id: 'a17', titulo: 'Revisar o planejamento operacional da VP', nucleo: 'vp', membroId: 'lucas-gabriel', prazo: '2026-10-20', concluidaEm: '2026-10-23', regra: 'R2', etiqueta: 'Estratégia' },
+  { id: 'a18', titulo: 'Registrar a ata da reunião de acompanhamento', nucleo: 'vp', membroId: 'lucas-gabriel', prazo: '2026-10-27', regra: 'R4', etiqueta: 'Acompanhamento' },
 
-  // Kauã de Medeiros · Gestão de Pessoas (5 R1, 1 R2)
+  // Kauã de Medeiros · Gestão de Pessoas · Assessor (5 R1, 1 R2)
   { id: 'a19', titulo: 'Organizar a capacitação interna', nucleo: 'gp', membroId: 'kaua-medeiros', prazo: '2026-10-20', concluidaEm: '2026-10-20', regra: 'R1', etiqueta: 'Capacitação' },
   { id: 'a20', titulo: 'Aplicar pesquisa de clima organizacional', nucleo: 'gp', membroId: 'kaua-medeiros', prazo: '2026-10-22', concluidaEm: '2026-10-21', regra: 'R1', etiqueta: 'Pessoas' },
   { id: 'a21', titulo: 'Conduzir feedbacks individuais do núcleo', nucleo: 'gp', membroId: 'kaua-medeiros', prazo: '2026-10-26', concluidaEm: '2026-10-26', regra: 'R1', etiqueta: 'Pessoas' },
@@ -233,20 +252,18 @@ export const ATIVIDADES: Atividade[] = [
   { id: 'a23', titulo: 'Planejar integração dos trainees', nucleo: 'gp', membroId: 'kaua-medeiros', prazo: '2026-10-29', concluidaEm: '2026-10-29', regra: 'R1', etiqueta: 'Capacitação' },
   { id: 'a24', titulo: 'Consolidar avaliação de desempenho', nucleo: 'gp', membroId: 'kaua-medeiros', prazo: '2026-10-21', concluidaEm: '2026-10-23', regra: 'R2', etiqueta: 'Pessoas' },
 
-  // Gabriel Nunes · Marketing (2 R1, 1 R2, 1 R3, 1 R4)
-  { id: 'a25', titulo: 'Publicar post institucional no Instagram', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-19', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Conteúdo' },
-  { id: 'a26', titulo: 'Atualizar o media kit da empresa', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-23', concluidaEm: '2026-10-22', regra: 'R1', etiqueta: 'Marca' },
-  { id: 'a27', titulo: 'Produzir relatório de métricas das redes', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-21', concluidaEm: '2026-10-24', regra: 'R2', etiqueta: 'Conteúdo' },
-  { id: 'a28', titulo: 'Gravar vídeo de divulgação do processo seletivo', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-22', concluidaEm: '2026-10-22', regra: 'R3', etiqueta: 'Conteúdo' },
-  { id: 'a29', titulo: 'Revisar identidade visual das propostas', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-24', regra: 'R4', etiqueta: 'Marca' },
+  // Gabriel Nunes · Marketing · SDR (2 R1, 1 R2, 1 R3, 1 R4)
+  { id: 'a25', titulo: 'Qualificar os leads do formulário do site', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-19', concluidaEm: '2026-10-19', regra: 'R1', etiqueta: 'Prospecção' },
+  { id: 'a26', titulo: 'Atualizar o pipeline de leads no CRM', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-23', concluidaEm: '2026-10-22', regra: 'R1', etiqueta: 'Comercial' },
+  { id: 'a27', titulo: 'Enviar relatório semanal de prospecção', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-21', concluidaEm: '2026-10-24', regra: 'R2', etiqueta: 'Prospecção' },
+  { id: 'a28', titulo: 'Fazer ligações de prospecção ativa', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-22', concluidaEm: '2026-10-22', regra: 'R3', etiqueta: 'Prospecção' },
+  { id: 'a29', titulo: 'Fazer follow-up dos leads de setembro', nucleo: 'marketing', membroId: 'gabriel-nunes', prazo: '2026-10-24', regra: 'R4', etiqueta: 'Comercial' },
 
   // Demais atividades vencidas (R4) de outros membros, para "Para recuperar pontos"
-  { id: 'a30', titulo: 'Atualizar o painel de saúde dos clientes', nucleo: 'cs', membroId: null, prazo: '2026-10-27', regra: 'R4', etiqueta: 'Operação' },
+  { id: 'a30', titulo: 'Atualizar o regimento interno', nucleo: 'presidencia', membroId: null, prazo: '2026-10-27', regra: 'R4', etiqueta: 'Governança' },
   { id: 'a31', titulo: 'Atualizar o banco de talentos', nucleo: 'gp', membroId: null, prazo: '2026-10-23', regra: 'R4', etiqueta: 'Pessoas' },
   { id: 'a32', titulo: 'Enviar convocação da RG de novembro', nucleo: 'gp', membroId: null, prazo: '2026-10-28', regra: 'R4', etiqueta: 'Governança' },
-  { id: 'a33', titulo: 'Registrar contatos do evento de networking', nucleo: 'comercial', membroId: null, prazo: '2026-10-25', regra: 'R4', etiqueta: 'Comercial' },
-  { id: 'a34', titulo: 'Testar protótipo do MVP com usuários', nucleo: 'inovacao', membroId: null, prazo: '2026-10-22', regra: 'R4', etiqueta: 'MVP' },
-  { id: 'a35', titulo: 'Documentar aprendizados do MVP', nucleo: 'inovacao', membroId: null, prazo: '2026-10-28', regra: 'R4', etiqueta: 'MVP' },
+  { id: 'a33', titulo: 'Atualizar o Monday com as entregas dos núcleos', nucleo: 'vp', membroId: null, prazo: '2026-10-25', regra: 'R4', etiqueta: 'Acompanhamento' },
 ]
 
 // 8.6 · Histórico da carteira PIPJ (igual para todos os membros da demonstração).

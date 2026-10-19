@@ -12,13 +12,23 @@ Protótipo navegável e independente de um módulo de gamificação para o siste
 | --- | --- |
 | Como funciona | `/#/como-funciona` |
 | Ranking (tela inicial) | `/#/ranking` (`?visao=acumulado` para o acumulado) |
-| Núcleos | `/#/nucleos/:id` (`cs`, `projetos`, `gp`, `comercial`, `marketing`, `inovacao`) |
+| Núcleos | `/#/nucleos/:id` (`presidencia`, `vp`, `projetos`, `marketing`, `gp`) |
 | Membros | `/#/membros/:id` (`joao-pedro`, `pedro-henrique`, `lucas-gabriel`, `kaua-medeiros`, `gabriel-nunes`) |
 | Indicadores | `/#/indicadores` |
 | Regras | `/#/regras` |
 | Área do Membro · PIPJ (simula outro sistema) | `/#/area-do-membro/:id` |
 
 Os itens do sistema atual (Dashboard, Análise SWOT etc.) aparecem esmaecidos e sem clique.
+
+## Núcleos e estrutura de cargos
+
+| Núcleo | Estrutura |
+| --- | --- |
+| Presidência | Diretor – Assessor |
+| Vice-Presidência | Diretor – Gerente – Assessor |
+| Projetos | Diretor – Gerente – Consultor |
+| Marketing | Diretor – Closer – SDR |
+| Gestão de Pessoas | Diretor – Gerente – Assessor |
 
 ## Dados e cálculos
 
