@@ -1,0 +1,105 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Relatório · Gamificação do Acompanhamento Estratégico</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+body { font-family: Inter, Arial, sans-serif; color: #1e293b; font-size: 10.5pt; line-height: 1.5; margin: 0; }
+.capa { background: #1b2f52; color: #fff; padding: 14mm 12mm; border-radius: 4mm; margin-bottom: 8mm; border-top: 2mm solid #2cc6ea; }
+.capa h1 { font-size: 24pt; margin: 0 0 2mm; line-height: 1.15; }
+.capa .sub { color: #a5e9f8; margin: 0; font-size: 11pt; }
+h2 { color: #1b2f52; font-size: 15pt; margin: 9mm 0 3mm; padding-bottom: 1.5mm; border-bottom: 0.6mm solid #2cc6ea; break-after: avoid; }
+h2.pagina { break-before: page; margin-top: 0; }
+h3 { color: #1b2f52; font-size: 11.5pt; margin: 5mm 0 2mm; break-after: avoid; }
+p { margin: 0 0 2.5mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 6mm; } li { margin-bottom: 1mm; }
+strong { color: #0f1c33; }
+.nota { background: #ecfbfe; border-left: 1mm solid #2cc6ea; padding: 2.5mm 4mm; color: #0f7391; font-size: 9.5pt; border-radius: 1mm; }
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9.5pt; break-inside: avoid; }
+th { background: #1b2f52; color: #fff; text-align: left; padding: 1.8mm 2.5mm; font-weight: 600; }
+td { padding: 1.6mm 2.5mm; border-bottom: 0.3mm solid #e2e8f0; }
+tr:nth-child(even) td { background: #f4f6f9; }
+figure { margin: 3mm auto 5mm; break-inside: avoid; }
+figure img { width: 100%; border: 0.3mm solid #cbd5e1; border-radius: 1.5mm; display: block; max-height: 195mm; object-fit: contain; object-position: top; }
+figcaption { font-size: 8.5pt; color: #64748b; margin-top: 1.5mm; text-align: center; }
+</style></head><body><header class="capa"><h1>Gamificação do Acompanhamento Estratégico</h1>
+<p class="sub">Relatório de apresentação do protótipo · Vice-Presidência · Produtiva Júnior</p></header>
+<p class="nota">Os números deste relatório são de uma base de demonstração (dados fictícios). As regras de pontuação são uma proposta em validação, e os valores do PIPJ são ilustrativos.</p>
+<h2 class="">1. Objetivo</h2>
+<p>Este relatório apresenta o protótipo do módulo de <strong>Gamificação do Acompanhamento Estratégico</strong>, proposto no Plano de Ação da Vice-Presidência (OKR 1, KR 1.2). O módulo é uma nova área do sistema estratégico da VP. Ele transforma o registro das atividades dos núcleos em pontos, ranking e indicadores, e liga esse resultado ao reconhecimento na RG e ao PIPJ.</p>
+<p>O protótipo serve para mostrar à diretoria e aos núcleos como a proposta funcionaria na prática, antes de qualquer desenvolvimento definitivo.</p>
+<h2 class="">2. O problema que a gamificação resolve</h2>
+<p>Hoje a gerente da VP acompanha o tático de cada núcleo a cada 15 dias e no início de cada batalha. As atividades são registradas no Monday, mas:</p>
+<ul><li>não existem indicadores para comparar a execução dos núcleos;</li><li>muita atividade é feita e não é registrada, e por isso não aparece no acompanhamento;</li><li>não há um incentivo claro para manter o status das atividades atualizado.</li></ul>
+<p>A gamificação cria esse incentivo: registrar e cumprir prazos passa a dar pontos ao núcleo, e deixar atividades sem registro ou com status desatualizado tira pontos.</p>
+<h2 class="">3. Como funciona, em 4 etapas</h2>
+<figure style="width:100%"><img src="imagens/01-como-funciona.png"><figcaption><b>Figura 1.</b> Tela "Como funciona": a linha lógica do módulo, do Monday ao PIPJ.</figcaption></figure>
+<ol><li><strong>Monday:</strong> os membros registram as atividades do núcleo, como já fazem hoje.</li><li><strong>Gamificação no sistema estratégico:</strong> a cada quinzena, o sistema calcula os pontos, o índice de cada núcleo, o ranking e os indicadores.</li><li><strong>Reconhecimento na RG:</strong> o núcleo campeão e o núcleo que mais evoluiu são reconhecidos e registrados na ata.</li><li><strong>PIPJ na Área do Membro:</strong> os membros dos núcleos reconhecidos recebem um bônus de reconhecimento no saldo do PIPJ, depois da aprovação do diretor.</li></ol>
+<p>Três princípios valem para todo o módulo:</p>
+<ul><li><strong>A competição é entre núcleos, não entre pessoas.</strong> Não existe ranking individual.</li><li><strong>As regras são uma proposta em validação</strong> e podem mudar antes da implantação.</li><li><strong>Os valores do PIPJ são ilustrativos.</strong> O bônus depende de aprovação da diretoria.</li></ul>
+<h2 class="">4. Núcleos e estrutura de cargos</h2>
+<p>O ranking considera cinco núcleos, cada um com sua estrutura de cargos:</p>
+<table><thead><tr><th>Núcleo</th><th>Estrutura de cargos</th></tr></thead><tbody><tr><td>Presidência</td><td>Diretor – Assessor</td></tr><tr><td>Vice-Presidência</td><td>Diretor – Gerente – Assessor</td></tr><tr><td>Projetos</td><td>Diretor – Gerente – Consultor</td></tr><tr><td>Marketing</td><td>Diretor – Closer – SDR</td></tr><tr><td>Gestão de Pessoas</td><td>Diretor – Gerente – Assessor</td></tr></tbody></table>
+<h2 class="">5. Regras de pontuação</h2>
+<p>Cada atividade da quinzena recebe uma regra, de acordo com a situação em que está:</p>
+<table><thead><tr><th>Código</th><th>Situação</th><th>Pontos</th></tr></thead><tbody><tr><td>R1</td><td>Concluída e registrada até o prazo</td><td>+3</td></tr><tr><td>R2</td><td>Concluída e registrada depois do prazo</td><td>+1</td></tr><tr><td>R3</td><td>Feita e não registrada (lançada pela VP no acompanhamento)</td><td>−2</td></tr><tr><td>R4</td><td>Prazo vencido com status desatualizado</td><td>−1</td></tr><tr><td>R5</td><td>Bônus: acompanhamento sem ponto de atenção</td><td>+5</td></tr><tr><td>R6</td><td>Bônus: plano de ação concluído no prazo</td><td>+5</td></tr></tbody></table>
+<h3>Fórmula do índice</h3>
+<p><strong>Índice = (soma dos pontos R1 a R4 + bônus) ÷ número de atividades da quinzena</strong></p>
+<p>Dividir pelo número de atividades torna a comparação justa entre núcleos de tamanhos diferentes. Por isso o ranking usa o índice, e não o total de pontos. Na demonstração, Projetos tem mais pontos (73) que a Presidência (64), mas fica em 2º lugar porque fez mais atividades (30 contra 24).</p>
+<p><strong>Exemplo (Presidência, Quinzena 4):</strong></p>
+<table><thead><tr><th>Regra</th><th>Quantidade</th><th>Peso</th><th>Subtotal</th></tr></thead><tbody><tr><td>R1</td><td>20</td><td>+3</td><td>+60</td></tr><tr><td>R2</td><td>2</td><td>+1</td><td>+2</td></tr><tr><td>R3</td><td>1</td><td>−2</td><td>−2</td></tr><tr><td>R4</td><td>1</td><td>−1</td><td>−1</td></tr><tr><td>R5 (bônus)</td><td>1</td><td>+5</td><td>+5</td></tr><tr><td><strong>Total</strong></td><td></td><td></td><td><strong>64 pontos</strong></td></tr></tbody></table>
+<p>64 pontos ÷ 24 atividades = <strong>índice 2,67</strong>.</p>
+<h3>Desempate</h3>
+<ol><li>Maior percentual de atividades entregues no prazo (R1 ÷ atividades).</li><li>Menos atividades atrasadas (R3 + R4).</li></ol>
+<h3>Semáforo dos indicadores</h3>
+<ul><li><strong>Verde:</strong> valor igual ou acima da meta.</li><li><strong>Amarelo:</strong> até 10 pontos percentuais abaixo da meta.</li><li><strong>Vermelho:</strong> mais de 10 pontos percentuais abaixo da meta.</li></ul>
+<p>Um indicador vermelho por duas quinzenas seguidas vai para a pauta da RN (Reunião de Núcleos).</p>
+<h2 class="">6. Navegação</h2>
+<p>O módulo aparece como uma nova seção, <strong>GAMIFICAÇÃO</strong>, na barra lateral do sistema estratégico. Os itens atuais do sistema (Dashboard, Análise SWOT, Batalhas etc.) aparecem esmaecidos, só para mostrar onde o módulo se encaixa. As telas do módulo são:</p>
+<table><thead><tr><th>Tela</th><th>Para quem</th><th>O que mostra</th></tr></thead><tbody><tr><td>Como funciona</td><td>Apresentação</td><td>A linha lógica do módulo</td></tr><tr><td>Ranking</td><td>Todos</td><td>Posição dos núcleos, destaques e evolução</td></tr><tr><td>Núcleos</td><td>Todos</td><td>Detalhe de um núcleo: pontos, indicadores, pendências e estrutura</td></tr><tr><td>Membros</td><td>VP e o próprio membro</td><td>Atividades e contribuição de um membro, sem comparação</td></tr><tr><td>Indicadores</td><td>Gerente e assessores da VP</td><td>Matriz de indicadores e pontos de atenção para a RN</td></tr><tr><td>Regras</td><td>Todos</td><td>Regras, fórmula, semáforo e configurações pendentes</td></tr><tr><td>Área do Membro · PIPJ</td><td>Membro (outro sistema)</td><td>Carteira PIPJ e bônus de reconhecimento</td></tr></tbody></table>
+<p>O sistema também funciona no celular. Nesse caso, a barra lateral vira um menu que abre pelo botão no topo.</p>
+<figure style="width:45%"><img src="imagens/15-celular-menu.png"><figcaption><b>Figura 2.</b> No celular, o conteúdo se ajusta à largura da tela e o menu lateral abre pelo botão no topo.</figcaption></figure>
+<h2 class="pagina">7. Tela Ranking</h2>
+<p>É a tela inicial do módulo.</p>
+<figure style="width:100%"><img src="imagens/02-ranking-completo.png"><figcaption><b>Figura 3.</b> Tela Ranking completa.</figcaption></figure>
+<ul><li><strong>Cabeçalho da batalha:</strong> mostra a Battle #3 (1 set. a 30 nov. 2026), a quinzena atual (4 de 6) e o progresso da batalha (66%).</li><li><strong>Pódio:</strong> os três primeiros núcleos, com o índice em destaque. Na Quinzena 4: Presidência (2,67), Projetos (2,43) e Gestão de Pessoas (2,30).</li><li><strong>Três destaques:</strong><ul><li><strong>Líder da quinzena:</strong> Presidência, com 64 pontos em 24 atividades e 83% no prazo.</li><li><strong>Mais evoluiu:</strong> Gestão de Pessoas, cujo índice subiu 0,45 (de 1,85 para 2,30).</li><li><strong>Precisa de atenção:</strong> Marketing, com entrega no prazo em 60% pela 2ª quinzena seguida. O texto é construtivo e mostra o caminho: atualizar a atividade vencida soma 2 pontos e leva o índice a 1,80.</li></ul></li><li><strong>Tabela do ranking:</strong> posição, variação desde a quinzena anterior (seta para cima, seta para baixo ou traço), núcleo, índice, pontos, atividades e percentual no prazo. Clicar numa linha abre o núcleo.</li><li><strong>Gráfico de evolução:</strong> o índice de cada núcleo da Q1 à Q4.</li></ul>
+<p>O alternador <strong>Quinzena atual / Acumulado da batalha</strong> troca a tabela pela visão acumulada, que mostra o índice de cada quinzena e a média:</p>
+<figure style="width:100%"><img src="imagens/04-ranking-acumulado.png"><figcaption><b>Figura 4.</b> Visão "Acumulado da batalha".</figcaption></figure>
+<p class="nota">O critério do acumulado (média simples dos índices) ainda é uma configuração pendente.</p>
+<h2 class="pagina">8. Tela Núcleos</h2>
+<p>Mostra tudo o que um núcleo precisa saber sobre a sua quinzena. O seletor no topo troca o núcleo.</p>
+<figure style="width:100%"><img src="imagens/05-nucleo-projetos.png"><figcaption><b>Figura 5.</b> Tela do núcleo Projetos.</figcaption></figure>
+<ul><li><strong>Cabeçalho:</strong> nome do núcleo, tático, estrutura de cargos e três números: posição, índice e atividades entregues no prazo. A barra mostra a situação das atividades (no prazo, fora do prazo, não registradas e vencidas).</li><li><strong>Pontos da quinzena:</strong> a conta completa, regra por regra (quantidade × peso = subtotal), mais os bônus, até chegar ao índice. Qualquer membro consegue conferir de onde veio o resultado.</li><li><strong>Para recuperar pontos:</strong> as atividades vencidas com status desatualizado e quanto cada uma vale se for concluída e registrada (+2 pontos, porque passa de R4 para R2). Também mostra qual seria o índice se tudo fosse atualizado.</li><li><strong>Indicadores:</strong> os 4 indicadores gerais e o indicador próprio do núcleo, com valor, meta e cor do semáforo. Um indicador vermelho pela 2ª quinzena seguida ganha a etiqueta "Vai para a pauta da RN".</li><li><strong>Estrutura e membros:</strong> os cargos do núcleo em ordem hierárquica, com os membros da demonstração em cada nível.</li><li><strong>Índice nas quinzenas:</strong> a evolução do núcleo da Q1 à Q4.</li></ul>
+<figure style="width:100%"><img src="imagens/06-nucleo-marketing.png"><figcaption><b>Figura 6.</b> Tela do núcleo Marketing, com o alerta de vermelho pela 2ª quinzena.</figcaption></figure>
+<h2 class="pagina">9. Tela Membros</h2>
+<p>Mostra a quinzena de um membro <strong>sem posição individual e sem comparação com outros membros</strong>. Os pontos de cada pessoa contam para o núcleo.</p>
+<figure style="width:100%"><img src="imagens/07-membro-joao-pedro.png"><figcaption><b>Figura 7.</b> Tela do membro João Pedro (Assessor · Presidência).</figcaption></figure>
+<ul><li><strong>Números da quinzena:</strong> atividades, concluídas no prazo, fora do prazo e pendentes/vencidas.</li><li><strong>Minhas atividades:</strong> a lista no mesmo estilo das Ações Operacionais do sistema, com status, prazo, etiqueta, objetivo vinculado e a regra aplicada.</li><li><strong>Contribuição para o núcleo:</strong> por exemplo, "Suas atividades somaram 16 dos 64 pontos do núcleo Presidência".</li><li><strong>Reconhecimento:</strong> informa se o núcleo está na zona de reconhecimento (campeão ou que mais evoluiu) e leva para a Área do Membro · PIPJ.</li></ul>
+<h2 class="pagina">10. Tela Indicadores (visão da VP)</h2>
+<p>É a ferramenta de trabalho da gerente e dos assessores da VP para preparar a RN.</p>
+<figure style="width:100%"><img src="imagens/08-indicadores.png"><figcaption><b>Figura 8.</b> Tela Indicadores.</figcaption></figure>
+<ul><li><strong>Matriz núcleos × indicadores:</strong> Registro, No prazo, Planos, Ciclo e Próprio, cada célula com a cor do semáforo.</li><li><strong>Detalhe da célula:</strong> ao clicar numa célula, aparecem a fórmula, o numerador, o denominador, o resultado e a meta. Exemplo: Marketing, entrega no prazo = 9 ÷ 15 = 60% (meta 80%).</li><li><strong>Coluna de alertas:</strong> marca os indicadores vermelhos por 2 quinzenas seguidas.</li><li><strong>Botão "Copiar pontos de atenção para a RN":</strong> gera um texto pronto com os números. Exemplo: "Marketing: entrega no prazo 60% (meta 80%), vermelho pela 2ª quinzena".</li></ul>
+<table><thead><tr><th>Indicador</th><th>Fórmula</th><th>Meta</th></tr></thead><tbody><tr><td>Registro</td><td>(atividades − R3) ÷ atividades</td><td>90%</td></tr><tr><td>No prazo</td><td>R1 ÷ atividades</td><td>80%</td></tr><tr><td>Planos no prazo</td><td>planos concluídos no prazo ÷ planos com prazo na quinzena</td><td>80%</td></tr><tr><td>Ciclo de acompanhamento</td><td>acompanhamentos realizados ÷ acompanhamentos previstos</td><td>100%</td></tr><tr><td>Próprio</td><td>definido por cada núcleo</td><td>definida por cada núcleo</td></tr></tbody></table>
+<h2 class="pagina">11. Tela Regras</h2>
+<p>Reúne, num só lugar, as regras R1 a R6 (com a etiqueta "Proposta em validação"), a fórmula do índice, o desempate, o semáforo e os critérios de reconhecimento.</p>
+<figure style="width:100%"><img src="imagens/09-regras.png"><figcaption><b>Figura 9.</b> Tela Regras.</figcaption></figure>
+<p>No fim da tela ficam as <strong>configurações pendentes</strong>, que precisam de decisão da diretoria:</p>
+<ul><li><strong>Bônus antes ou depois da divisão:</strong> na demonstração, o bônus entra antes da divisão pelo número de atividades.</li><li><strong>Valor do bônus no PIPJ:</strong> na demonstração, R$ 30,00 para o núcleo campeão e R$ 15,00 para o que mais evoluiu, por membro.</li><li><strong>Participação da VP no ranking:</strong> na demonstração, a VP participa como núcleo.</li><li><strong>Critério do campeão da batalha:</strong> última quinzena ou média acumulada.</li></ul>
+<h2 class="">12. Reconhecimento e PIPJ</h2>
+<p>Ao fim de cada batalha, dois núcleos entram na <strong>zona de reconhecimento</strong>:</p>
+<ul><li>o <strong>núcleo campeão</strong>, líder do ranking;</li><li>o <strong>núcleo que mais evoluiu</strong>, com o maior aumento do índice.</li></ul>
+<p>O reconhecimento é registrado na ata da RG. Além disso, pode virar um <strong>bônus de reconhecimento</strong> no crédito do PIPJ de cada membro do núcleo, desde que o diretor aprove.</p>
+<p>O PIPJ fica em outro sistema, a <strong>Área do Membro</strong>. Lá o membro tem uma carteira com créditos para gastos de desenvolvimento: até R$ 300,00 por pedido, com comprovante, nas categorias capacitação, papelaria, MEJ, eventos sênior e tecnologia. A gamificação não aparece na Área do Membro. O membro só vê o efeito dela: o aumento do saldo pelo bônus.</p>
+<h2 class="pagina">13. Área do Membro · PIPJ</h2>
+<p>Esta tela simula o outro sistema. Por isso tem um visual diferente, sem a barra lateral da VP, e um botão para voltar ao sistema estratégico.</p>
+<figure style="width:100%"><img src="imagens/10-area-do-membro-com-bonus.png"><figcaption><b>Figura 10.</b> Área do Membro de João Pedro, cujo núcleo (Presidência) é o campeão previsto.</figcaption></figure>
+<ul><li><strong>Carteira PIPJ:</strong> saldo atual de R$ 150,00 e, em destaque, o aumento previsto de R$ 30,00, que leva o saldo previsto a R$ 180,00.</li><li><strong>Bônus de reconhecimento:</strong> aparece como "Previsto — depende do fechamento da Battle #3 e da aprovação do diretor".</li><li><strong>Histórico de lançamentos:</strong> data, descrição, valor e status de cada crédito e retirada.</li></ul>
+<p>Quem não está num núcleo reconhecido vê a mensagem "Seu núcleo ainda não está na zona de reconhecimento nesta batalha":</p>
+<figure style="width:100%"><img src="imagens/11-area-do-membro-sem-bonus.png"><figcaption><b>Figura 11.</b> Área do Membro de Lucas Gabriel (Vice-Presidência), sem bônus previsto.</figcaption></figure>
+<p>O botão <strong>Solicitar retirada</strong> abre um formulário demonstrativo com categoria, valor (até R$ 300,00), justificativa e comprovante. Ao enviar, o sistema mostra "Solicitação simulada — nenhuma operação real foi feita".</p>
+<figure style="width:100%"><img src="imagens/12-solicitar-retirada.png"><figcaption><b>Figura 12.</b> Formulário de solicitação de retirada (demonstrativo).</figcaption></figure>
+<h2 class="pagina">14. Resultado da Quinzena 4 (dados da demonstração)</h2>
+<table><thead><tr><th>Posição</th><th>Núcleo</th><th>Pontos</th><th>Atividades</th><th>No prazo</th><th>Índice</th><th>Variação</th></tr></thead><tbody><tr><td>1º</td><td>Presidência</td><td>64</td><td>24</td><td>83%</td><td>2,67</td><td>subiu 1</td></tr><tr><td>2º</td><td>Projetos</td><td>73</td><td>30</td><td>77%</td><td>2,43</td><td>caiu 1</td></tr><tr><td>3º</td><td>Gestão de Pessoas</td><td>46</td><td>20</td><td>70%</td><td>2,30</td><td>subiu 1</td></tr><tr><td>4º</td><td>Vice-Presidência</td><td>37</td><td>18</td><td>72%</td><td>2,06</td><td>caiu 1</td></tr><tr><td>5º</td><td>Marketing</td><td>25</td><td>15</td><td>60%</td><td>1,67</td><td>manteve</td></tr></tbody></table>
+<ul><li><strong>Zona de reconhecimento (previsão):</strong> Presidência (campeã) e Gestão de Pessoas (mais evoluiu, +0,45).</li><li><strong>Ponto de atenção para a RN:</strong> Marketing, com entrega no prazo vermelha pela 2ª quinzena seguida.</li></ul>
+<h2 class="">15. Próximos passos</h2>
+<ol><li>Validar as regras de pontuação e as metas com a diretoria.</li><li>Decidir as configurações pendentes (bônus, valor no PIPJ, participação da VP e critério do campeão).</li><li>Definir o indicador próprio de cada núcleo.</li><li>Definir como os dados do Monday chegam ao sistema estratégico.</li><li>Aprovar o uso do bônus de reconhecimento no PIPJ.</li></ol>
+<h2 class="">16. Acesso ao protótipo</h2>
+<p>O protótipo está publicado na Vercel e pode ser incorporado no Google Sites (Inserir → Incorporar → URL). Ele abre direto na tela de Ranking, sem login, e não tem nenhuma integração real: todos os dados são fictícios e ficam só na página.</p></body></html>
